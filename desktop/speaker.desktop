@@ -1,6 +1,0 @@
-[Desktop Entry]
-Name=Speaker
-Comment=enable headphones script
-Exec=/home/mitsuki/Documents/github/samus-repair-backup/setup/audio/enable-speakers.sh
-Icon=/home/mitsuki/Documents/github/samus-repair-backup/icon/speaker.png
-Type=Application
