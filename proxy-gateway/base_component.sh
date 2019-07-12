@@ -52,11 +52,12 @@ function install_tproxy() {
   if [ ! -d "/ss-tproxy" ]; then
     git clone https://github.com/zfl9/ss-tproxy
   fi
-  cd ss-tproxy
+  pushd ss-tproxy
   chmod +x ss-tproxy
   cp -af ss-tproxy /usr/local/bin
   mkdir -p /etc/ss-tproxy
   cp -af ss-tproxy.conf gfwlist.* chnroute.* /etc/ss-tproxy
+  popd
 }
 
 function base_component(){
@@ -73,8 +74,8 @@ function install_all() {
   base_component;
   install_libsodium;
   install_mbedtls;
-  install_ssr $1;
   install_tproxy;
+  install_ssr $1;
 }
 
 case $1 in
