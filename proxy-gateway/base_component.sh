@@ -14,8 +14,6 @@ function install_libsodium() {
   make install || { exit 1; }
   popd
   ldconfig
-
-  rm -r libsodium-$LIBSODIUM_VER  &>/dev/null
 }
 
 function install_mbedtls() {
@@ -30,8 +28,6 @@ function install_mbedtls() {
   make DESTDIR=/usr install || { exit 1; }
   popd
   ldconfig
-
-  rm -r mbedtls-$MBEDTLS_VER      &>/dev/null
 }
 
 function install_ssr() {
@@ -50,8 +46,6 @@ function install_ssr() {
   ln -sf ssr-local ssr-tunnel
   mv ssr-* /usr/local/bin/
   rm -fr /usr/local/ssr-libev
-
-  rm -r shadowsocksr-libev        &>/dev/null
 }
 
 function install_tproxy() {
@@ -63,7 +57,6 @@ function install_tproxy() {
   cp -af ss-tproxy /usr/local/bin
   mkdir -p /etc/ss-tproxy
   cp -af ss-tproxy.conf gfwlist.* chnroute.* /etc/ss-tproxy
-
 }
 
 function base_component(){
