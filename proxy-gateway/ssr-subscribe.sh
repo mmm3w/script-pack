@@ -1,8 +1,7 @@
 #!/bin/bash
-subscription="subscription.txt"
+subscription="sub.txt"
 configfile="ssr-config/"
 base64 -d       </dev/null &>/dev/null && base64='base64 -d'
-base64 --decode </dev/null &>/dev/null && base64='base64 --decode'
 [ ! -f "$subscription"  ] && { echo "[ERR] No such file or directory: '$subscription'"  1>&2; exit 1; } || source "$subscription"
 
 if [[ ! -d "$configfile" ]]; then
@@ -25,7 +24,7 @@ function decode_single_url() {
     fi
   done
 
-  json=$json"\"local_address\":\"0.0.0.0\",\"local_port\":60080,\"fast_open\": false,\"workers\": 1"
+  json=$json"\"local_address\":\"0.0.0.0\",\"local_port\":60080,\"fast_open\":false,\"workers\":1"
 
   echo "{$json}" > $configfile"${arr[0]}.json"
 }
