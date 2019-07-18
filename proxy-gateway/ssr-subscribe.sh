@@ -1,6 +1,5 @@
 #!/bin/bash
-subscription="sub.txt"
-configfile="ssr-config/"
+subscription="sub.conf"
 base64 -d       </dev/null &>/dev/null && base64='base64 -d'
 [ ! -f "$subscription"  ] && { echo "[ERR] No such file or directory: '$subscription'"  1>&2; exit 1; } || source "$subscription"
 
