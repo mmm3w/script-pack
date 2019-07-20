@@ -20,3 +20,11 @@
 简单测试服务器访问延迟
 + 参数1:配置文件路径，ssr-subscribe脚本生成配置文件的路径
 + 参数2:对服务器简单过滤
+
+
+---
+##### 脚本调整->
+server-set 让模式能够修改，主要在gfwlist和chnroute之间
+server-test ping次数改为1次
+
+
