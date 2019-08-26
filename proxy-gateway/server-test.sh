@@ -4,7 +4,7 @@ function traversing-test() {
   do
     if [[ $conf =~ $2 ]]; then
       url=${conf%.*}
-      time="$( ping $url -c 4 | grep "^rtt" )"
+      time="$( ping $url -c 1 | grep "^rtt" )"
       avg=${time##*=}
       avg=${avg#*/}
       avg=${avg%%/*}

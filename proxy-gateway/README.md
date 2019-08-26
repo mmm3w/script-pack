@@ -8,21 +8,19 @@
 ##### ssr-subscribe
 通过订阅地址获取相关服务器的json配置文件
 + 需要同目录下 [sub.conf]() 配置文件
-+ configfile="your path" 配置文件存放的路径
++ configfile="config path" 配置文件存放的路径
 + url="your subscription address" 订阅地址
 
 ##### server-set
 修改ss-tproxy相关配置信息，主要用于服务器配置切换
 + 参数1:配置文件的路径
-+ 内网网段直接修改脚本文件
++ 需要同目录下 [base.conf]() 配置文件
++ config="ss-tproxy config path" ss-tproxy的配置路径
++ intranet="your intranet segment" 内网网段
++ mode="gfwlist/chnroute" 代理模式
++ port="proxy server port" 代理服务器端口
 
 ##### server-test
-简单测试服务器访问延迟
+简单测试服务器访问延迟,确认是否能够连接服务器
 + 参数1:配置文件路径，ssr-subscribe脚本生成配置文件的路径
 + 参数2:对服务器简单过滤
-
-
----
-##### 脚本调整->
-server-set 让模式能够修改，主要在gfwlist和chnroute之间
-server-test ping次数改为1次
