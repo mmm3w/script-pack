@@ -1,6 +1,6 @@
 ﻿用于树莓派构建一些服务的脚本
 
-还未购入树莓派，目前这些脚本运行在nanopi neo平台上，日后会迁至树莓派4B
+目前这些脚本运行在树莓派4B平台上
 
 proxy-gateway：构建透明网关，使用 [ssr](https://github.com/shadowsocksrr/shadowsocksr-libev) + [ss-tproxy](https://github.com/zfl9/ss-tproxy)
 
