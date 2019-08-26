@@ -32,10 +32,10 @@ function install_mbedtls() {
 
 function install_ssr() {
   if [ ! -d "/shadowsocksr-libev" ]; then
-    if [[ $1 == "akkariiin" ]]; then
-      git clone -b Akkariiin/develop https://github.com/shadowsocksrr/shadowsocksr-libev.git
-    else
+    if [[ $1 == "original" ]]; then
       git clone https://github.com/shadowsocksr-backup/shadowsocksr-libev.git
+    else
+      git clone -b Akkariiin/develop https://github.com/shadowsocksrr/shadowsocksr-libev.git
     fi
   fi
   cd shadowsocksr-libev
@@ -56,7 +56,17 @@ function install_tproxy() {
   chmod +x ss-tproxy
   cp -af ss-tproxy /usr/local/bin
   mkdir -p /etc/ss-tproxy
-  cp -af ss-tproxy.conf gfwlist.* chnroute.* /etc/ss-tproxy
+  cp -af ss-tproxy.conf gfwlist* chnroute* /etc/ss-tproxy
+  cp -af ss-tproxy.service /etc/systemd/system
+  popd
+}
+
+function install_chinadnsng() {
+  if [ ! -d "/chinadns-ng" ]; then
+    git clone https://github.com/zfl9/chinadns-ng
+  fi
+  pushd chinadns-ng
+  make && sudo make install
   popd
 }
 
@@ -66,6 +76,8 @@ function base_component(){
   apt-get install ipset -y
   apt-get install dnsmasq -y
   apt-get install haveged -y
+
+  install_chinadnsng;
 
   apt-get install --no-install-recommends gettext build-essential autoconf libtool libpcre3-dev asciidoc xmlto libev-dev libc-ares-dev automake libssl-dev -y
 }

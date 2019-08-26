@@ -3,7 +3,7 @@
 ##### base-component (sudo)
 基础组件安装，其中包括ssr编译库，ssr，ss-tproxy
 + 参数1:(all/base/libsodium/mbedtls/ssr/tproxy)需要安装的部分
-+ 参数2:(akkariiin/-) ssr版本
++ 参数2:(original/-) ssr版本,默认安装akkariiin版
 
 ##### ssr-subscribe
 通过订阅地址获取相关服务器的json配置文件
@@ -26,5 +26,3 @@
 ##### 脚本调整->
 server-set 让模式能够修改，主要在gfwlist和chnroute之间
 server-test ping次数改为1次
-
-
