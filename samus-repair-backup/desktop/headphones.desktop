@@ -1,0 +1,6 @@
+[Desktop Entry]
+Name=Headphones
+Comment=enable headphones script
+Exec=/home/mitsuki/Documents/github/samus-repair-backup/setup/audio/enable-headphones.sh
+Icon=/home/mitsuki/Documents/github/samus-repair-backup/icon/headphones.png
+Type=Application
