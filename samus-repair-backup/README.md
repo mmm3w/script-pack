@@ -1,4 +1,4 @@
-Chromebook Pixel 2015 (samus) 音频修复脚本备份
+Chromebook Pixel 2015 (samus) 修复脚本备份
 
 来自该项目[raphael/linux-samus](https://github.com/raphael/linux-samus)
 
