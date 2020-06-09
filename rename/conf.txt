@@ -1,0 +1,17 @@
+#是否遍历子目录中的文件(留空为false)
+TraverseSub=
+#
+#指定文件夹(留空/workspace/路径)
+AssignFolder=F:\atomtemp
+#
+#忽略文件
+Ignore=.py
+#
+#重命名模式
+#1:普通方式，从1开始
+#2:类似方式1，不过需要指定开始数字
+#3:指定前缀命名(一般用于插入)
+Mode=1
+#
+#名字长度，不足补零
+NameLength=8
