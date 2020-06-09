@@ -1,0 +1,13 @@
+.idea
+.vscode
+__pycache__
+
+test.py
+*.set
+*.conf
+*.log
+*.temp
+*.json
+
+/timing/voice
+
