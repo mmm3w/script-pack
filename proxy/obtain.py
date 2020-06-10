@@ -18,16 +18,31 @@ def checkDirectory(dir):
     if not os.path.exists(dir):
         os.makedirs(dir)
 
-confFile = io.open('subscription.json', 'r', encoding='utf-8')
-confFileStr = confFile.read()
-confFile.close()
-confDict = loads(confFileStr)
-checkDirectory(confDict['folder'])
-checkDirectory(confDict['list'])
+
+workspace = os.path.split(os.path.realpath(__file__))[0]
+subTemp = os.path.join(workspace,'sub.temp')
+
+confFolder = ''
+confUrl = ''
+
+#要求输入订阅配置
+if os.path.exists(subTemp):
+    with io.open(subTemp, 'r', encoding='utf-8') as f:
+        confFolder = f.readline().replace('\n', '')
+        confUrl = f.readline().replace('\n', '')
+else:
+    confUrl = input('Input subscription url:')
+    confFolder = input('Input config folder:')
+    with io.open(subTemp, 'w', encoding='utf-8') as f:
+        f.write('{0}\n{1}'.format(confFolder, confUrl))
+#检查目录
+checkDirectory(confFolder)
 
 ssrList = {}
-
-res = requests.get(confDict['url']).content
+domainList = ''
+portList = ''
+#请求数据并解析
+res = requests.get(confUrl).content
 ssrCodeList = base64.b64decode(baseEqualPadding(res)).decode('utf-8').replace('\n','').split('ssr://')
 for ssrItem in ssrCodeList:
     if len(ssrItem) <= 0:
@@ -36,7 +51,10 @@ for ssrItem in ssrCodeList:
         ssrDict = {}
         ssssss = decode(ssrItem).split(':')
         ssrDict['server'] = ssssss[0]
+        domainList += ssssss[0] + ' '
         ssrDict['server_port'] = int(ssssss[1])
+        if ssssss[1] not in portList:
+            portList += ssssss[1] + ' '
         ssrDict['protocol'] = ssssss[2]
         ssrDict['method'] = ssssss[3]
         ssrDict['obfs'] = ssssss[4]
@@ -60,13 +78,21 @@ for ssrItem in ssrCodeList:
         ssrDict['workers'] = 1
 
         fileName = ssssss[0][:ssssss[0].find('.')]
-        ssrConfigFile = io.open(os.path.join(confDict['folder'], '{}.json'.format(fileName)), 'w', encoding='utf-8')
-        ssrConfigFile.write(dumps(ssrDict, ensure_ascii=False))
-        ssrConfigFile.close()
+
+        with io.open(os.path.join(confFolder, '{}.json'.format(fileName)), 'w', encoding='utf-8') as f:
+            f.write(dumps(ssrDict, ensure_ascii=False))
+        print('Get {0}:{1} config'.format(ssssss[0], ssssss[1]))
+
         ssrList[fileName] = ssrDict['remarks']
-    except:
+    except Exception as d:
+        print(d)
         pass
 
-sL = io.open(os.path.join(confDict['list'],'ServerList.json'), 'w', encoding='utf-8')
-sL.write(dumps(ssrList, ensure_ascii=False))
-sL.close()
+#缓存一个服务器列表用于切换服务器
+with io.open(os.path.join(confFolder,'list.json'), 'w', encoding='utf-8') as f:
+    f.write(dumps(ssrList, ensure_ascii=False))
+#缓存域名列表用于修改ss-tproxy配置
+with io.open(os.path.join(workspace,'server.temp'), 'w', encoding='utf-8') as f:
+    f.write(domainList.strip())
+with io.open(os.path.join(workspace,'port.temp'), 'w', encoding='utf-8') as f:
+    f.write(portList.strip().replace(' ',','))

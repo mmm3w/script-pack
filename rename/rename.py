@@ -2,12 +2,11 @@ import os
 from rename_pack import Conf,rename
 
 hint = "y"
-path = 'F:/GithubFile/linux-script-pack/rename/conf.txt'
 workspace = os.path.split(os.path.realpath(__file__))[0]
 
 print("The workspace is {0}".format(workspace))
 
-renameConf = Conf(path)
+renameConf = Conf(os.path.join(workspace,'conf.txt'))
 
 nowFolder = ''
 if renameConf.isAssignFolder() == False:
