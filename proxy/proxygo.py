@@ -92,6 +92,7 @@ if checkNet(baidu) == False:
     writeGoLog(logFile, 'ERR: Request {} fail. Net maybe error'.format(baidu))
     sys.exit(0)
 
+confFolder = obtainConfFolder(subTemp)
 tempConfigDict = {}
 #检测代理是否开启，未开启则开启，找不到配置文件直接退出
 if int(queryProxyID()) < 0:
@@ -108,7 +109,6 @@ if int(queryProxyID()) < 0:
 c = pycurl.Curl()
 c.setopt(pycurl.WRITEFUNCTION, databack)
 
-confFolder = obtainConfFolder(subTemp)
 weightDict = sorted(obtainWeightDict(weightFile).items(),key=lambda x:x[1])
 
 #检测代理可行性
