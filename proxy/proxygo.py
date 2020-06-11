@@ -89,7 +89,7 @@ if checkNet(baidu) == False:
 
 
 #检测代理是否开启，未开启则开启，找不到配置文件直接退出
-if queryProxyID() < 0:
+if int(queryProxyID()) < 0:
     with io.open(weightFile, 'r', encoding='utf-8') as f:
         tempConfig = loads(f.read())['last']
         if len(tempConfig) > 0:
