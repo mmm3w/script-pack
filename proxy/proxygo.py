@@ -59,11 +59,16 @@ def addrPick(c, weightDict):
             else:
                 tempCounter = counter
                 tempConfig = wK
+                break
         else:
             counter += 1
             continue
         #切换代理
-        reStartProxy(os.path.join(confFolder, '{0}.json'.format(tempConfig)))
+    if counter >= len(weightDict):
+        c.close()
+        writeGoLog(logFile, 'ERR: No services available')
+        sys.exit(0)
+    reStartProxy(os.path.join(confFolder, '{0}.json'.format(tempConfig)))
     if checkProxy(c) == True:
         #c已关闭
         #写日志
@@ -83,8 +88,7 @@ def addrPick(c, weightDict):
         #代理异常，重新挑选代理地址
         addrPick(c, weightDict)
     
-    writeGoLog(logFile, 'ERR: No services available')
-    sys.exit(0)
+   
 
 
 #先检测网络是否可用,不可用直接写日志退出
