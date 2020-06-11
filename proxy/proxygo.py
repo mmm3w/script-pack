@@ -115,7 +115,7 @@ weightDict = sorted(obtainWeightDict(weightFile).items(),key=lambda x:x[1])
 if checkProxy(c) == True:
     #代理正常，此时是使用最后一次的配置或者正常检测进入
     #此时只需要记录检测时间以及状态即可，无需修改权重
-    writeGoLog(logFile, 'INF: Proxy normally. Config:{0}'.format(tempConfig))
+    writeGoLog(logFile, 'INF: Proxy normally.')
     sys.exit(0)
 else:
     #代理异常，进入挑选代理地址
