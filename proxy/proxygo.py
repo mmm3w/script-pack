@@ -1,6 +1,6 @@
 import os, pycurl, sys, io,random
 from tools import startProxy,queryProxyID,reStartProxy,obtainConfFolder,writeGoLog
-from json import loads
+from json import loads,dumps
 
 workspace = os.path.split(os.path.realpath(__file__))[0]
 weightFile =  os.path.join(workspace,'weight.temp')
@@ -46,7 +46,7 @@ def obtainWeightDict(filePath):
     return mDict
 
 def addrPick(c, weightDict):
-    global tempConfig,tempCounter
+    global tempConfig,tempCounter,tempConfigDict
     #位置计数器
     counter = 0
     for w in weightDict:
@@ -72,6 +72,11 @@ def addrPick(c, weightDict):
         with io.open(weightFile, 'w', encoding='utf-8') as f:
             for key,value in weightDict:
                 f.write('{0}|{1}\n'.format(str(value), key))
+
+        with io.open(os.path.join(workspace,'server.temp'), 'w', encoding='utf-8') as f:
+            tempConfigDict['last'] = tempConfig
+            f.write(dumps(tempConfigDict, ensure_ascii=False))
+
         writeGoLog(logFile, 'INF: Change config:{0}'.format(tempConfig))
         sys.exit(0)
     else:
@@ -87,11 +92,12 @@ if checkNet(baidu) == False:
     writeGoLog(logFile, 'ERR: Request {} fail. Net maybe error'.format(baidu))
     sys.exit(0)
 
-
+tempConfigDict = {}
 #检测代理是否开启，未开启则开启，找不到配置文件直接退出
 if int(queryProxyID()) < 0:
-    with io.open(weightFile, 'r', encoding='utf-8') as f:
-        tempConfig = loads(f.read())['last']
+    with io.open(os.path.join(workspace,'server.temp'), 'r', encoding='utf-8') as f:
+        tempConfigDict = loads(f.read())
+        tempConfig = tempConfigDict['last']
         if len(tempConfig) > 0:
             startProxy(tempConfig['last'])
         else:
