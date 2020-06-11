@@ -9,7 +9,7 @@ def queryProxyID():
             return -1
 
 def closeProxy(pid = queryProxyID()):
-    if pid > 0:
+    if int(pid) > 0:
         os.system('sudo kill -9 {0}'.format(pid))
         print('Stop proxy process')
 
