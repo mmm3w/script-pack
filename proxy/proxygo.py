@@ -99,7 +99,7 @@ if int(queryProxyID()) < 0:
         tempConfigDict = loads(f.read())
         tempConfig = tempConfigDict['last']
         if len(tempConfig) > 0:
-            startProxy(tempConfig['last'])
+            startProxy(tempConfig)
         else:
             writeGoLog(logFile, 'ERR: No config cache')
             sys.exit(0)
