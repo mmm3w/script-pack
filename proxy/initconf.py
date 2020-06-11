@@ -5,7 +5,6 @@ from shutil import copyfile
 workspace = os.path.split(os.path.realpath(__file__))[0]
 subTemp = os.path.join(workspace,'sub.temp')
 serverTemp = os.path.join(workspace,'server.temp')
-portTemp = os.path.join(workspace,'port.temp')
 initConf = os.path.join(workspace, 'init.json')
 
 confFolder = ''
@@ -25,6 +24,13 @@ if not os.path.exists(initConfDect['conf'] + '.backup'):
     copyfile(initConfDect['conf'], initConfDect['conf'] + '.backup')
 
 newConf = ''
+serverList = ''
+portList = ''
+with io.open(serverTemp, 'r', encoding='utf-8') as lt:
+    mDict = loads(lt.read())
+    serverList = mDict['server']
+    portList =  mDict['port']
+
 with io.open(initConfDect['conf'] + '.backup', 'r', encoding='utf-8') as f:
     for line in f:
         #mode参数
@@ -46,11 +52,9 @@ with io.open(initConfDect['conf'] + '.backup', 'r', encoding='utf-8') as f:
             line = line[:line.find("'") + 1] + initConfDect['selfonly'] + line[line.rfind("'"):]
         
         if 'proxy_svraddr4=' in line:
-            with io.open(serverTemp, 'r', encoding='utf-8') as lt:
-                line = line[:line.find("(") + 1] + lt.read() + line[line.rfind(")"):]
+            line = line[:line.find("(") + 1] + serverList + line[line.rfind(")"):]
         if 'proxy_svrport=' in line:
-            with io.open(portTemp, 'r', encoding='utf-8') as lt:
-                line = line[:line.find("'") + 1] + lt.read() + line[line.rfind("'"):]
+            line = line[:line.find("'") + 1] + portList + line[line.rfind("'"):]
         
         if 'proxy_startcmd=' in line:
             line = line[:line.find("'") + 1] + 'true' + line[line.rfind("'"):]

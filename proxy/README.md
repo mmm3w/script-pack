@@ -48,4 +48,8 @@ build-essential、libpcre3-dev、libev-dev、libc-ares-dev、libssl-dev
 
 
 ##### reset.py
-切换代理服务器，并重启代理进程
+手动切换代理服务器，并重启代理进程
+
+
+##### proxygo.py
+可用于直接启动代理进程，同时也用于定时检测代理是否可用并自动切换服务器。

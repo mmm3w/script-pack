@@ -93,6 +93,8 @@ with io.open(os.path.join(confFolder,'list.json'), 'w', encoding='utf-8') as f:
     f.write(dumps(ssrList, ensure_ascii=False))
 #缓存域名列表用于修改ss-tproxy配置
 with io.open(os.path.join(workspace,'server.temp'), 'w', encoding='utf-8') as f:
-    f.write(domainList.strip())
-with io.open(os.path.join(workspace,'port.temp'), 'w', encoding='utf-8') as f:
-    f.write(portList.strip().replace(' ',','))
+    serverDict = {}
+    serverDict['server'] = domainList.strip()
+    serverDict['port'] = portList.strip().replace(' ',',')
+    serverDict['last'] = ''
+    f.write(dumps(serverDict, ensure_ascii=False))

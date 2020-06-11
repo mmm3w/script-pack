@@ -1,19 +1,11 @@
-import os, io, sys
-from json import loads
-
-def readJson2Dict(path):
-    jsonFileStr = ''
-    with io.open(path, 'r', encoding='utf-8') as f:
-        jsonFileStr = f.read()
-    return loads(jsonFileStr)
-
+import os, io, sys, subprocess
+from tools import reStartProxy,obtainConfFolder
+from json import loads,dumps
 
 workspace = os.path.split(os.path.realpath(__file__))[0]
 subTemp = os.path.join(workspace,'sub.temp')
 
-confFolder = ''
-with io.open(subTemp, 'r', encoding='utf-8') as f:
-    confFolder = f.readline().replace('\n','')
+confFolder = obtainConfFolder(subTemp)
 
 serveDict = {}
 with io.open(os.path.join(confFolder, 'list.json'), 'r', encoding='utf-8') as f:
@@ -30,16 +22,18 @@ mark = 0
 for key, value in serveDict.items():
     mark = mark + 1
     if mark == number:
-        ssrConfigPath = os.path.join(confFolder, '{}.json'.format(key))
+        ssrConfig = key
 
-if 'ssrConfigPath' not in dir():
+if 'ssrConfig' not in dir():
     print("Error number")
     sys.exit(0)
 
-if os.system('sudo kill -9 $(pidof ssr-redir)') == 0:
-    print('Closed proxy process')
+serverDict = {}
+with io.open(os.path.join(workspace,'server.temp'), 'r', encoding='utf-8') as f:
+    serverDict = loads(f.read())
+    serverDict['last'] = ssrConfig
+with io.open(os.path.join(workspace,'server.temp'), 'w', encoding='utf-8') as f:
+    f.write(dumps(serverDict, ensure_ascii=False))
 
-if os.system('(ssr-redir -c {0} -u </dev/null &>>/var/log/ssr-redir.log &)'.format(ssrConfigPath)) == 0:
-    print('Restart proxy process')
-
-os.system('sudo ss-tproxy status')
+reStartProxy(os.path.join(confFolder, '{}.json'.format(ssrConfig)))
+subprocess.run('sudo ss-tproxy status')
