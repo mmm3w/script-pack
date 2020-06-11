@@ -49,16 +49,16 @@ def addrPick(c, weightDict):
     global tempConfig,tempCounter,tempConfigDict
     #位置计数器
     counter = 0
-    for w in weightDict:
+    for wK, _ in weightDict.items():
         #取出能ping通的地址，从之前的那个地址开始
         if counter > tempCounter:
             #先检测能够连接到服务器
-            if checkNetFromConf(os.path.join(confFolder, '{0}.json'.format(w.key))) == False:
+            if checkNetFromConf(os.path.join(confFolder, '{0}.json'.format(wK))) == False:
                 counter += 1
                 continue
             else:
                 tempCounter = counter
-                tempConfig = w.key
+                tempConfig = wK
         else:
             counter += 1
             continue
@@ -70,8 +70,8 @@ def addrPick(c, weightDict):
         #权重修改并写入文件
         weightDict[tempConfig] += 1
         with io.open(weightFile, 'w', encoding='utf-8') as f:
-            for key,value in weightDict:
-                f.write('{0}|{1}\n'.format(str(value), key))
+            for k,v in weightDict.items():
+                f.write('{0}|{1}\n'.format(str(v), k))
 
         with io.open(os.path.join(workspace,'server.temp'), 'w', encoding='utf-8') as f:
             tempConfigDict['last'] = tempConfig
@@ -99,7 +99,7 @@ if int(queryProxyID()) < 0:
         tempConfigDict = loads(f.read())
         tempConfig = tempConfigDict['last']
         if len(tempConfig) > 0:
-            startProxy(tempConfig)
+            startProxy(os.path.join(confFolder, '{0}.json'.format(tempConfig)))
         else:
             writeGoLog(logFile, 'ERR: No config cache')
             sys.exit(0)
