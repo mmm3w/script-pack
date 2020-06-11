@@ -114,35 +114,3 @@ if checkProxy(c) == True:
 else:
     #代理异常，进入挑选代理地址
     addrPick(c, weightDict)
-
-
-
-# print(google)
-# print('HTTP响应状态:{}'.format(c.getinfo(pycurl.HTTP_CODE)))
-# print('DNS解析时间:{}'.format(c.getinfo(pycurl.NAMELOOKUP_TIME)))
-# print('建立连接时间:{}'.format(c.getinfo(pycurl.CONNECT_TIME)))
-# print('准备传输时间:{}'.format(c.getinfo(pycurl.PRETRANSFER_TIME)))
-# print('传输开始时间:{}'.format(c.getinfo(pycurl.STARTTRANSFER_TIME)))
-# print('传输结束时间:{}'.format(c.getinfo(pycurl.TOTAL_TIME)))
-# print('下载数据包大小:{}'.format(c.getinfo(pycurl.SIZE_DOWNLOAD)))
-# print('HTTP头大小:{}'.format(c.getinfo(pycurl.HEADER_SIZE)))
-# print('平均下载速度:{}'.format(c.getinfo(pycurl.SPEED_DOWNLOAD)/1024))
-
-# 
-# c.perform()
-# print(baidu)
-# print('HTTP响应状态:{}'.format(c.getinfo(pycurl.HTTP_CODE)))
-# print('DNS解析时间:{}'.format(c.getinfo(pycurl.NAMELOOKUP_TIME)))
-# print('建立连接时间:{}'.format(c.getinfo(pycurl.CONNECT_TIME)))
-# print('准备传输时间:{}'.format(c.getinfo(pycurl.PRETRANSFER_TIME)))
-# print('传输开始时间:{}'.format(c.getinfo(pycurl.STARTTRANSFER_TIME)))
-# print('传输结束时间:{}'.format(c.getinfo(pycurl.TOTAL_TIME)))
-# print('下载数据包大小:{}'.format(c.getinfo(pycurl.SIZE_DOWNLOAD)))
-# print('HTTP头大小:{}'.format(c.getinfo(pycurl.HEADER_SIZE)))
-# print('平均下载速度:{}'.format(c.getinfo(pycurl.SPEED_DOWNLOAD)/1024))
-
-
-
-
-# c.close()
-

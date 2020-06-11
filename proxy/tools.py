@@ -29,4 +29,4 @@ def obtainConfFolder(subTempPath):
 
 def writeGoLog(logPath, text):
     with io.open(logPath, 'a+', encoding='utf-8') as f:
-        f.write('{0}\t|\t{1}\n'.format(time.asctime(time.localtime(time.time())),text))
+        f.write('{0}\t{1}\n'.format(time.asctime(time.localtime(time.time())),text))
