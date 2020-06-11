@@ -14,7 +14,7 @@ def closeProxy(pid = queryProxyID()):
         print('Stop proxy process')
 
 def startProxy(ssrConfigPath):
-    if subprocess.run('ssr-redir -c {0} -u </dev/null &>>/var/log/ssr-redir.log &'.format(ssrConfigPath), stdout = subprocess.DEVNULL).returncode == 0:
+    if os.system('ssr-redir -c {0} -u </dev/null &>>/var/log/ssr-redir.log &'.format(ssrConfigPath)) == 0:
         print('Start proxy process')
 
 def reStartProxy(ssrConfigPath):
