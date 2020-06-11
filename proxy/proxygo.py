@@ -1,4 +1,5 @@
-import os, pycurl, sys, subprocess, io,random
+
+import os, pycurl, sys, io,random
 from tools import startProxy,queryProxyID,reStartProxy,obtainConfFolder,writeGoLog
 from json import loads
 
@@ -16,7 +17,7 @@ def databack(buf):
     pass
 
 def checkNet(url):
-    if subprocess.run('ping {} -n 1'.format(url), stdout = subprocess.DEVNULL).returncode == 0:
+    if os.system('ping {} -n 1'.format(url)) == 0:
         return True
     else:
         return False

@@ -1,4 +1,4 @@
-import os, io, sys, subprocess
+import os, io, sys
 from tools import reStartProxy,obtainConfFolder
 from json import loads,dumps
 
@@ -36,4 +36,4 @@ with io.open(os.path.join(workspace,'server.temp'), 'w', encoding='utf-8') as f:
     f.write(dumps(serverDict, ensure_ascii=False))
 
 reStartProxy(os.path.join(confFolder, '{}.json'.format(ssrConfig)))
-subprocess.run('sudo ss-tproxy status')
+os.system('sudo ss-tproxy status')
