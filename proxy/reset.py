@@ -1,39 +1,34 @@
-import os, io, sys
-from tools import reStartProxy,obtainConfFolder
-from json import loads,dumps
 
-workspace = os.path.split(os.path.realpath(__file__))[0]
-subTemp = os.path.join(workspace,'sub.temp')
+import sys,os
 
-confFolder = obtainConfFolder(subTemp)
+from osuosu import listJson, infoCache
+from sharep import loadJson, writeJson, status, restartp
 
-serveDict = {}
-with io.open(os.path.join(confFolder, 'list.json'), 'r', encoding='utf-8') as f:
-    serveDict = loads(f.read())
+def printServerList(dict):
+    count = 0
+    strTemp = ''
+    for _, value in dict.items():
+        count += 1
+        strTemp += '{0}---{1}\n'.format(count, value)
+    print(strTemp)
+
+
+def linkst(infoCacheDict):
+    serveDict = loadJson(listJson, infoCacheDict['save_folder'])
+    printServerList(serveDict)
+    number = int(input('Select server:'))
+    mark = 0
+    for key, _ in serveDict.items():
+        mark = mark + 1
+        if mark == number:
+            ssrConfig = key
+
+    if 'ssrConfig' not in dir():
+        print("Error number")
+        sys.exit(0)
     
-mark = 0
-for key, value in serveDict.items():
-    mark = mark + 1
-    print('[{0}]\t{1}'.format(mark, value))
+    infoCacheDict['last'] = ssrConfig
+    writeJson(infoCache, infoCacheDict)
 
-number = int(input('Select server:'))
-
-mark = 0
-for key, value in serveDict.items():
-    mark = mark + 1
-    if mark == number:
-        ssrConfig = key
-
-if 'ssrConfig' not in dir():
-    print("Error number")
-    sys.exit(0)
-
-serverDict = {}
-with io.open(os.path.join(workspace,'server.temp'), 'r', encoding='utf-8') as f:
-    serverDict = loads(f.read())
-    serverDict['last'] = ssrConfig
-with io.open(os.path.join(workspace,'server.temp'), 'w', encoding='utf-8') as f:
-    f.write(dumps(serverDict, ensure_ascii=False))
-
-reStartProxy(os.path.join(confFolder, '{}.json'.format(ssrConfig)))
-os.system('sudo ss-tproxy status')
+    restartp(os.path.join(infoCacheDict['save_folder'], '{}.json'.format(ssrConfig)))
+    status()

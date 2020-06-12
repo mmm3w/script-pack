@@ -8,6 +8,7 @@ test.py
 *.log
 *.temp
 *.json
+*.cache
 
 /timing/voice
 
