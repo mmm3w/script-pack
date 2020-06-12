@@ -17,6 +17,7 @@ def syoukan(infoCacheDict):
     if not os.path.exists(initConfDect['conf'] + '.backup'):
         copyfile(initConfDect['conf'], initConfDect['conf'] + '.backup')
     #获取内容并修改
+    newConf = ''
     with io.open(initConfDect['conf'] + '.backup', 'r', encoding='utf-8') as f:
         for line in f:
             #mode参数
