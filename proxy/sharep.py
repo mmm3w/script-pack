@@ -94,7 +94,7 @@ def netspeed(url):
     return float(subprocess.run(curlspeedc + url, shell=True, stdout=subprocess.PIPE).stdout.decode('utf-8'))
 
 def netfea(domain):
-    return subprocess.run(pingc.format(domain), shell=True, stdout=subprocess.PIPE).stdout.decode('utf-8') == '0'
+    return subprocess.run(pingc.format(domain), shell=True, stdout=subprocess.DEVNULL).returncode == 0
 
 
 
