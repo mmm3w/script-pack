@@ -13,7 +13,6 @@ def addrpick(infoCacheDict):
         if netfea(wItem[0]):
             restartp(os.path.join(infoCacheDict['save_folder'], '{0}.json'.format(wItem[0])))
             if netspeed(internTest) > internRefer:
-                print(wDict)
                 wDict[wItem[0]] = wItem[1] + 1
                 writeWeight(wDict)
                 writeLog(logFile, 'INF: Change config({0}).'.format(wItem[0]))
