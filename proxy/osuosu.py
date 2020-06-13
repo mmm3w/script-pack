@@ -30,5 +30,5 @@ startc = '(ssr-redir -c {0} -u </dev/null &>>/var/log/ssr-redir.log &)'
 stopc = 'sudo kill -9 {0}'
 statusc = 'sudo ss-tproxy status'
 ssrpidc = 'sudo pidof ssr-redir'
-curlspeedc = "curl -o /dev/null -s -w '%\{speed_download\}' {0}"
+curlspeedc = "curl -o /dev/null -s -w '%{speed_download}' "
 pingc = 'ping -c 1 {0}'
