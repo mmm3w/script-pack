@@ -5,7 +5,7 @@ import subprocess
 
 from osuosu import infoCache, statusc, startc
 from osuosu import ssrpidc, stopc, curlspeedc
-from osuosu import weightTemp, pingc, alnatag
+from osuosu import weightTemp, pingc, alnatag, ressttc
 
 ################
 def isCacheCreate():
@@ -74,6 +74,9 @@ def stopp():
 def restartp(conf):
     stopp()
     startp(conf)
+
+def resstt():
+    subprocess.run(ressttc, shell=True, stdout=subprocess.DEVNULL)
 
 ################
 def baseEqualPadding(source):
