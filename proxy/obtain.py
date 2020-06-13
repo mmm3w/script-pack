@@ -1,11 +1,10 @@
 import requests, base64, os, io
 from json import dumps, loads
 
-from tools import writeText
 from osuosu import workspace, localAddr
 from osuosu import localPort, infoCache, listJson
 from sharep import mkdir, baseEqualPadding, decode
-from sharep import writeJson
+from sharep import writeJson, createWeight
 
 #这里只提供行为逻辑判断
 def burst(infoCacheDict):
@@ -66,5 +65,6 @@ def burst(infoCacheDict):
     infoCacheDict['server'] = domainList.strip()
     infoCacheDict['port'] = portList.strip().replace(' ',',')
     #写缓存
+    createWeight(ssrList)
     writeJson(listJson, ssrList, infoCacheDict['save_folder'])
     writeJson(infoCache,infoCacheDict)
