@@ -25,8 +25,8 @@ def addrpick(infoCacheDict):
 
 def kudzu(infoCacheDict):
     #检测网络可用性
-    if netspeed(localTest) <= 0:
-        writeLog(logFile, 'ERR: Request {} fail. Net maybe error'.format(localTest))
+    if not netfea(localTest):
+        writeLog(logFile, 'ERR: Ping {} fail. Net maybe error'.format(localTest))
         sys.exit(0)
 
     if int(pidofp()) < 0:
