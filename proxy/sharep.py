@@ -26,9 +26,9 @@ def obtainWeightDict():
 
 def createWeight(sList):
     with io.open(weightTemp, 'w', encoding = 'utf-8') as f:
-        for sK,_ in sList.items():
+        for sK,sV in sList.items():
             for tag in alnatag:
-                if tag in sK:
+                if tag in sV:
                     f.write('0|{0}\n'.format(sK))
 
 
