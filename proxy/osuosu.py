@@ -24,7 +24,7 @@ internTest = 'www.google.com'
 internRefer = 0
 
 #备选地址过滤
-alnatag = ('日','港')
+regexp = '(2|3).*(港|日)'
 
 startc = '(ssr-redir -c {0} -u </dev/null &>>/var/log/ssr-redir.log &)'
 stopc = 'sudo kill -9 {0}'

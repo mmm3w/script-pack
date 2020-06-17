@@ -1,11 +1,11 @@
 
-import os, io, base64, time
+import os, io, base64, time, re
 import json
 import subprocess
 
 from osuosu import infoCache, statusc, startc
 from osuosu import ssrpidc, stopc, curlspeedc
-from osuosu import weightTemp, pingc, alnatag, ressttc
+from osuosu import weightTemp, pingc, regexp, ressttc
 
 ################
 def isCacheCreate():
@@ -27,10 +27,9 @@ def obtainWeightDict():
 def createWeight(sList):
     with io.open(weightTemp, 'w', encoding = 'utf-8') as f:
         for sK,sV in sList.items():
-            for tag in alnatag:
-                if tag in sV:
-                    f.write('0|{0}\n'.format(sK))
-
+            if re.search(regexp, sV) is not None:
+                f.write('0|{0}\n'.format(sK))
+                    
 
 def writeWeight(wDict):
     with io.open(weightTemp, 'w', encoding = 'utf-8') as f:
