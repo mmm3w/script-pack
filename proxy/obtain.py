@@ -53,7 +53,7 @@ def burst(infoCacheDict):
         ssrDict['fast_open'] = False
         ssrDict['workers'] = 1
 
-        fileName = '{0}({1}'.format(ssssss[0], ssssss[1])
+        fileName = '{0}-{1}'.format(ssssss[0], ssssss[1])
         if ssssss[0] not in domainList:
             domainList += ssssss[0] + ' '
         if ssssss[1] not in portList:
