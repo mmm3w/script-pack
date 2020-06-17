@@ -29,7 +29,7 @@ def kudzu(infoCacheDict):
         writeLog(logFile, 'ERR: Ping {} fail. Net maybe error'.format(localTest))
         sys.exit(0)
 
-    if int(pidofp()) < 0:
+    if len(pidofp()) < 0:
         #此时代理未开启
         if len(infoCacheDict['last']) > 0:
             startp(os.path.join(infoCacheDict['save_folder'], '{}.json'.format(infoCacheDict['last'])))
