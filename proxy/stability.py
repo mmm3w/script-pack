@@ -44,3 +44,6 @@ def kudzu(infoCacheDict):
         sys.exit(0)
     else:
         addrpick(infoCacheDict)
+
+def serverCheck(infoCacheDict):
+    print('null')

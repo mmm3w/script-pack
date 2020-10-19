@@ -6,6 +6,7 @@ import subprocess
 from osuosu import infoCache, statusc, startc
 from osuosu import ssrpidc, stopc, curlspeedc
 from osuosu import weightTemp, pingc, regexp, ressttc
+from osuosu import logFolder
 
 ################
 def isCacheCreate():
@@ -14,6 +15,10 @@ def isCacheCreate():
 def obtainCache():
     with io.open(infoCache, 'r', encoding = 'utf-8') as f:
         return json.loads(f.read())
+
+def checkLogFolder():
+    if not os.path.exists(logFolder):
+        os.mkdir(logFolder)
 
 def obtainWeightDict():
     with io.open(weightTemp, 'r', encoding = 'utf-8') as f:
@@ -41,6 +46,7 @@ def mkdir(dir):
         os.makedirs(dir)
 
 def writeLog(logPath, text):
+    checkLogFolder()
     with io.open(logPath, 'a+', encoding='utf-8') as f:
         f.write('{0}\t{1}\n'.format(time.asctime(time.localtime(time.time())),text))
 

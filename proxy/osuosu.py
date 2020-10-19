@@ -1,4 +1,5 @@
 import os
+import datetime
 
 localAddr = '0.0.0.0'
 localPort = 60080
@@ -10,7 +11,8 @@ infoCache = os.path.join(workspace,'info.cache')
 #基础的ss-tproxy配置
 initConf = os.path.join(workspace, 'init.json')
 #检测日志
-logFile = os.path.join(workspace,'kudzu.log')
+logFolder = os.path.join(workspace,"log")
+logFile = os.path.join(logFolder,'kudzu-{0}.log'.format(datetime.date.today()))
 #备选服务器权重
 weightTemp = os.path.join(workspace,'weight.temp')
 #服务器列表，用于选择服务器
@@ -24,7 +26,7 @@ internTest = 'www.google.com'
 internRefer = 0
 
 #备选地址过滤
-regexp = '(2|3).*(港|日)'
+regexp = '(1|2|3).*(港|日)'
 
 startc = '(ssr-redir -c {0} -u </dev/null &>>/var/log/ssr-redir.log &)'
 stopc = 'sudo kill -9 {0}'

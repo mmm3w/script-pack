@@ -27,16 +27,14 @@ build-essential、libpcre3-dev、libev-dev、libc-ares-dev、libssl-dev
 `ob`:更新代理配置
 `init`:初始化ss-tproxy.conf
 `set`:设置服务器并启动代理进程
+`ck`:检测代理状态以及自动切换服务器，可以在计划任务中定时执行
+`autoob`:用于自动更新订阅，在计划任务中应用此项
 
-
-##### obtain.py
-提供更新代理配置方法
-首次打开需要输入代理配置文件存放目录以及订阅链接
-`注:重新获取订阅后需要重新初始化ss-tproxy.conf内容，并重启ss-tproxy，因为可能涉及到服务器地址的变动`
+##### osuosu.py
+提供脚本的一些常量配置
 
 ##### initconf.py
-提供初始化ss-tproxy.conf内容方法
-根据`init.json`配置来初始化，只用来修改常用的那几项目，需手动添加。
+提供初始化方法。主要为添加订阅链接，备份ss-tproxy配置文件，参照`osuosu.py`中的`initConf`配置一些初始信息，该配置文件需要手动添加。
 ```json
 {
     "conf":"F:/ss-tproxy.conf",
@@ -50,7 +48,20 @@ build-essential、libpcre3-dev、libev-dev、libc-ares-dev、libssl-dev
 }
 ```
 
+##### obtain.py
+提供从订阅地址中解析代理信息的方法。会参照`osuosu.py`中一些参数存放文件。
+
+##### initconf.py
+提供初始化ss-tproxy.conf内容方法
+根据`init.json`配置来初始化，只用来修改常用的那几项目，需手动添加。
+
 ##### reset.py
 提供手动切换代理服务器，并重启代理进程方法
+
+##### sharep.py
+一些调用方法的封装
+
+##### stability.py
+提供检测代理可用性以及代理服务器可用性，自动切换代理服务器的方法
 
 
