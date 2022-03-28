@@ -1,5 +1,6 @@
 .idea
 .vscode
+.history
 __pycache__
 
 test.py
@@ -9,6 +10,6 @@ test.py
 *.temp
 *.json
 *.cache
+*.cmd
 
 /timing/voice
-

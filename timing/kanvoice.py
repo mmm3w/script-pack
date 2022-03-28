@@ -6,7 +6,7 @@ from re import findall, search
 from lxml import etree
 from copy import deepcopy
 
-from tools import checkDirectory, removeSpecialSymbol, mergeStrList, downloadFile
+from support import checkDirectory, removeSpecialSymbol, mergeStrList, downloadFile
 
 def obtainVoiceList(p):
     list = []

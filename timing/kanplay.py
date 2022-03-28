@@ -5,7 +5,7 @@ from random import randrange
 from playsound import playsound
 from threading import Thread
 
-from tools import playLog, timef, numberContrastTable
+from support import playLog, timef, numberContrastTable
 
 #欢迎语音
 def welcome(kyaraName, voiceFolder):
