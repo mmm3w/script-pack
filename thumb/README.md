@@ -9,7 +9,7 @@ py .\dirthumb.py targetdir
 py .\cleardirtumb.py targetdir
 ```
 
-`videothumb.py`：创建视频封面，遍历所有文件夹和其子文件夹。当目录中存在视频文件时，会创建`.videothumb`文件夹，然后截取视频帧以视频名保存一张jpg。如果如果视频长度大于10s，会截取第10秒的画面，否则截取第0秒画面。
+`videothumb.py`：创建视频封面，遍历所有文件夹和其子文件夹。当目录中存在视频文件时，会创建`.thumbcache`文件夹，然后截取视频帧以视频名保存一张jpg。如果如果视频长度大于10s，会截取第10秒的画面，否则截取第0秒画面。
 ```python
 py .\videothumb.py targetdir
 ```

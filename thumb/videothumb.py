@@ -36,7 +36,7 @@ def ttc(dir):
             Thread(target=ttc, args=(ppp,)).start()
         else:
             if isvideo(ppp):
-                thumbdir = os.path.join(dir, ".videothumb")
+                thumbdir = os.path.join(dir, ".thumbcache")
                 if os.path.exists(thumbdir) and os.path.isfile(thumbdir):
                     os.remove(thumbdir)
                 if not os.path.exists(thumbdir):
