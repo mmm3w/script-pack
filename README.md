@@ -6,7 +6,7 @@
 ### decompile（待翻新）
 用于反编译APK的脚本。写的有点烂，不支持多平台，只确认能在win上跑。
 
-### pixiv
+### [pixiv](./pixiv/README.md#pixiv)
 通过读取chrome的cookie通过验证进行批量下载pixiv图片。
 
 ### rename（待翻新）
