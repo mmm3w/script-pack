@@ -15,7 +15,7 @@
 ### samus-repair-backup（待删除）
 一些备份用内容
 
-### thumb
+### [thumb](./thumb/README.md#thumb)
 用于创建封面
 
 ### timing（待翻新）

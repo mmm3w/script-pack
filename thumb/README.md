@@ -1,4 +1,4 @@
-### 食用说明
+### [食用说明](#thumb)
 `dirthumb.py`: 创建文件夹封面，遍历所有文件夹和其子文件夹。当目录中存在图片文件时，会选择第一张图片复制名为`.thumb`的文件作为文件的封面图。
 ```python
 py .\dirthumb.py targetdir
