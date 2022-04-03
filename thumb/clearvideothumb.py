@@ -1,11 +1,12 @@
 import sys
 import os
+import shutil
 from threading import Thread
 
 def ttc(dir):
-    t = os.path.join(dir, '.videothumb')
+    t = os.path.join(dir, '.thumbcache')
     if os.path.exists(t):
-        os.removedirs(t)
+        shutil.rmtree(t)
 
     for lists in os.listdir(dir):
         ppp = os.path.join(dir, lists)
