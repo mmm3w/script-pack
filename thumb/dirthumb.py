@@ -17,6 +17,7 @@ def ttc(dir):
         else:
             thumb = os.path.join(dir, '.thumb')
             if not os.path.exists(thumb) and isimage(ppp):
+                print("create " + thumb)
                 copyfile(ppp, thumb)
 
 if len(sys.argv) <= 1:

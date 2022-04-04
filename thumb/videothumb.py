@@ -25,6 +25,7 @@ def createthumb(fff, td):
         cap.set(cv2.CAP_PROP_POS_FRAMES, 0)
     ret, frame = cap.read()
     if ret:
+        print("create" + thumbfile)
         cv2.imencode('.jpg', frame)[1].tofile(thumbfile)
     cap.release()
 

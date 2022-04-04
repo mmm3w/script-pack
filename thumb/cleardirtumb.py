@@ -5,6 +5,7 @@ from threading import Thread
 def ttc(dir):
     t = os.path.join(dir, '.thumb')
     if os.path.exists(t):
+        print("delete " + t)
         os.remove(t)
 
     for lists in os.listdir(dir):

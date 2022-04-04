@@ -6,6 +6,7 @@ from threading import Thread
 def ttc(dir):
     t = os.path.join(dir, '.thumbcache')
     if os.path.exists(t):
+        print("delete " + t)
         shutil.rmtree(t)
 
     for lists in os.listdir(dir):
