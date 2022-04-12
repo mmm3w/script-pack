@@ -11,5 +11,6 @@ test.py
 *.json
 *.cache
 *.cmd
+*.mp3
 
 /timing/voice

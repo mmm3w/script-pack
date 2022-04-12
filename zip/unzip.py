@@ -4,7 +4,6 @@ import os
 import zipfile
 
 def unzip(zipf, savedir):
-    print(zipf)
     name  = os.path.basename(zipf).split('.')[0]
     td = os.path.join(savedir, name)
     if os.path.exists(td):
@@ -14,9 +13,9 @@ def unzip(zipf, savedir):
             os.remove(td)
     if not os.path.exists(td):
         os.mkdir(td)
-
+    print(zipf)
     r = zipfile.is_zipfile(zipf)
-    if r:     
+    if r:
         fz = zipfile.ZipFile(zipf, 'r')
         for file in fz.namelist():
             fz.extract(file, td) 

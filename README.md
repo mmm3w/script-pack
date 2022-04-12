@@ -24,5 +24,8 @@
 ### zip
 批量解压zip
 
+### cutter
+快捷视频分P切割
+
 ### support
 公用的玩意儿
