@@ -5,7 +5,7 @@ from threading import Thread
 
 def cutsave(fff, start, end, videoclip):
     video = CompositeVideoClip([videoclip.subclip(start, end)])
-    video.write_videofile(fff)
+    video.write_videofile(fff, threads = 8)
 
 if len(sys.argv) <= 2:
     exit()
