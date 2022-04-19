@@ -1,6 +1,7 @@
 import sys, os
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-from pixiv.artworks import downloadartworks
+
+from pixiv.download import downloadartworks
 from pixiv.user import initsession
 
 def getillustsList(session, userid):
@@ -31,7 +32,7 @@ try:
             break
         isoriginal = ''.join(input("Need original file?").split())
 
-        downloadartworks(session, headers, id, savedir, len(isoriginal) == 0)
+        traversecreator(session, headers, id, savedir, len(isoriginal) == 0)
 except Exception as e:
     print(e)
 input()

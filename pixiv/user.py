@@ -77,4 +77,5 @@ def initsession():
             raise Exception(
                 "You need to login to Pixiv on Chrome or check your internet. code:{0}".format(code))
     except Exception as e:
+        print(e)
         raise Exception("Request error.")
