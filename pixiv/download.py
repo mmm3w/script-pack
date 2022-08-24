@@ -10,7 +10,7 @@ def downloadfileset(session, urllist, localpath):
     success = []
     failure = []
     for item in urllist:
-        result = downloadfile(session, item, localpath)
+        result = downloadfile(session, item, localpath, item.split('/')[-1])
         if len(result) == 0:
             failure.append(item)
         else:

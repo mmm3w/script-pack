@@ -1,8 +1,7 @@
 import os
 
 
-def downloadfile(session, url, dir):
-    filename = url.split('/')[-1]
+def downloadfile(session, url, dir, filename):
     waitingfile = os.path.join(dir, "waiting_" + filename)
     savefile = os.path.join(dir, filename)
 
