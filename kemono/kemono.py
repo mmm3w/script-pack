@@ -5,6 +5,8 @@ from support.download import downloadfile
 from lxml import etree
 import requests
 
+retrymark = True
+
 def analyzetitle(html):
     titleNode =  html.xpath('//h1[@class="post__title"]')
     lst = []
@@ -31,6 +33,7 @@ def analyzedata(html):
     return data
 
 def downloaddata(session, dir, list):
+    global retrymark
     success = []
     failure = []
     for item in list:
@@ -41,6 +44,11 @@ def downloaddata(session, dir, list):
             success.append(item)
         print('[success/failure/total]:{0}/{1}/{2}'.format(
             len(success), len(failure), len(list)))
+    if len(failure) != 0:
+        if retrymark:
+            retrymark = False
+            print("Retry download failed source.")
+            downloaddata(session,dir, failure)
 
 if len(sys.argv) > 1:
     savedir = sys.argv[1]
@@ -54,6 +62,7 @@ headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/
                    'Accept-Language': 'zh-CN,zh;q=0.9,en-US;q=0.8,en;q=0.7'}
 while 1:
     try:
+        retrymark = True
         ruk = ''.join(input("Input kemono url:").split())
         if len(ruk) == 0:
             break
@@ -64,15 +73,15 @@ while 1:
             html = etree.HTML(result.text)
             #创建对应文件夹
             title = analyzetitle(html)
-            savedir = os.path.join(savedir, title)
-            if os.path.exists(savedir):
-                if os.path.isfile(savedir):
-                    os.remove(savedir)
-                    os.makedirs(savedir)
+            sd = os.path.join(savedir, title)
+            if os.path.exists(sd):
+                if os.path.isfile(sd):
+                    os.remove(sd)
+                    os.makedirs(sd)
             else:
-                os.makedirs(savedir)
+                os.makedirs(sd)
             data = analyzedata(html)
-            downloaddata(s, savedir, data)
+            downloaddata(s, sd, data)
         else:
             print('request error:' + result.status_code + '--->' + result.reason)
     except Exception as e:
